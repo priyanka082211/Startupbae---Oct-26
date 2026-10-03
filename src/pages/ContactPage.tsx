@@ -61,16 +61,40 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    // Simulate submission flow
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-    }, 700);
-  };
+  try {
+    const response = await fetch(
+      'https://script.google.com/macros/s/AKfycbz2Wh8X_antT51RqF_Kk8f1KyONTWN-ZpSEO3NZg9he0D-K5FB2CYkTv7twijwZhVRjKw/exec',
+      {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          businessName: formData.businessName,
+          email: formData.email,
+          website: formData.website,
+          needs: formData.needs.join(', '),
+          budget: formData.budget,
+          message: formData.message,
+        }),
+      }
+    );
+
+    setIsSubmitting(false);
+    setSubmitted(true);
+
+  } catch (error) {
+    console.error('Form submission error:', error);
+    setIsSubmitting(false);
+    alert('Something went wrong. Please try again.');
+  }
+};
 
   return (
     <div className="bg-[#FFF8F0] min-h-screen">
