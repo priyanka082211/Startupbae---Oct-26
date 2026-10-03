@@ -65,6 +65,8 @@ export default function App() {
           />
         )}
 
+        {currentPage === 'portfolio' && <PortfolioPage />}
+
         {currentPage === 'industries' && (
           <IndustriesPage onNavigate={navigateTo} />
         )}
