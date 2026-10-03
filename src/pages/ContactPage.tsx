@@ -66,7 +66,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   setIsSubmitting(true);
 
   try {
-    const response = await fetch(
+    await fetch(
       'https://script.google.com/macros/s/AKfycbz2Wh8X_antT51RqF_Kk8f1KyONTWN-ZpSEO3NZg9he0D-K5FB2CYkTv7twijwZhVRjKw/exec',
       {
         method: 'POST',
@@ -88,7 +88,6 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     setIsSubmitting(false);
     setSubmitted(true);
-
   } catch (error) {
     console.error('Form submission error:', error);
     setIsSubmitting(false);
