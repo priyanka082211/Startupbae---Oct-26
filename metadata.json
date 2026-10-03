@@ -1,0 +1,6 @@
+{
+  "name": "StartupBae",
+  "description": "StartupBae is a modern digital growth and creative studio combining brand, web, marketing, CRM pipelines, and customer automation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
