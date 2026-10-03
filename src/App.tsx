@@ -8,6 +8,7 @@ import { ArticleModal } from './components/ArticleModal';
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { WorkPage } from './pages/WorkPage';
+import { PortfolioPage } from './pages/PortfolioPage';
 import { IndustriesPage } from './pages/IndustriesPage';
 import { AboutPage } from './pages/AboutPage';
 import { InsightsPage } from './pages/InsightsPage';
