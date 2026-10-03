@@ -17,55 +17,90 @@ const portfolioItems = [
     title: 'Brand Identity',
     category: 'Branding & Logos',
     year: '2026',
-    image: '/portfolio/branding-01.jpg',
+    images: [
+      '/portfolio/branding-01.jpg',
+      '/portfolio/branding-02.jpg',
+      '/portfolio/branding-03.jpg',
+    ],
   },
   {
     title: 'Website Design',
     category: 'Websites & Landing Pages',
     year: '2026',
-    image: '/portfolio/website-01.jpg',
+    images: [
+      '/portfolio/website-01.jpg',
+      '/portfolio/website-02.jpg',
+      '/portfolio/website-03.jpg',
+    ],
   },
   {
     title: 'Social Media Campaign',
     category: 'Social Media & Ads',
     year: '2026',
-    image: '/portfolio/social-01.jpg',
+    images: [
+      '/portfolio/social-01.jpg',
+      '/portfolio/social-02.jpg',
+      '/portfolio/social-03.jpg',
+    ],
   },
   {
     title: '2D & 3D Animation',
     category: '2D & 3D Animation',
     year: '2026',
-    image: '/portfolio/animation-01.jpg',
+    images: [
+      '/portfolio/animation-01.jpg',
+      '/portfolio/animation-02.jpg',
+      '/portfolio/animation-03.jpg',
+    ],
   },
   {
     title: 'Motion Graphics',
     category: 'Motion Graphics & Videos',
     year: '2026',
-    image: '/portfolio/motion-01.jpg',
+    images: [
+      '/portfolio/motion-01.jpg',
+      '/portfolio/motion-02.jpg',
+      '/portfolio/motion-03.jpg',
+    ],
   },
   {
     title: 'Pitch Deck',
     category: 'Pitch Decks & Presentations',
     year: '2026',
-    image: '/portfolio/deck-01.jpg',
+    images: [
+      '/portfolio/deck-01.jpg',
+      '/portfolio/deck-02.jpg',
+      '/portfolio/deck-03.jpg',
+    ],
   },
   {
     title: 'Marketing Brochure',
     category: 'Brochures & Marketing Materials',
     year: '2026',
-    image: '/portfolio/brochure-01.jpg',
+    images: [
+      '/portfolio/brochure-01.jpg',
+      '/portfolio/brochure-02.jpg',
+      '/portfolio/brochure-03.jpg',
+    ],
   },
   {
     title: 'UI/UX Design',
     category: 'UI/UX Design',
     year: '2026',
-    image: '/portfolio/uiux-01.jpg',
+    images: [
+      '/portfolio/uiux-01.jpg',
+      '/portfolio/uiux-02.jpg',
+      '/portfolio/uiux-03.jpg',
+    ],
   },
 ];
 
 export const PortfolioPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState<
+    number | null
+  >(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const filteredItems =
     activeCategory === 'All'
@@ -74,30 +109,38 @@ export const PortfolioPage: React.FC = () => {
           (item) => item.category === activeCategory
         );
 
-  const selectedItem =
-    selectedIndex !== null ? filteredItems[selectedIndex] : null;
+  const selectedProject =
+    selectedProjectIndex !== null
+      ? filteredItems[selectedProjectIndex]
+      : null;
 
-  const closeModal = () => {
-    setSelectedIndex(null);
+  const openProject = (index: number) => {
+    setSelectedProjectIndex(index);
+    setSelectedImageIndex(0);
   };
 
-  const previousItem = () => {
-    if (selectedIndex === null) return;
+  const closeModal = () => {
+    setSelectedProjectIndex(null);
+    setSelectedImageIndex(0);
+  };
 
-    setSelectedIndex(
-      selectedIndex === 0
-        ? filteredItems.length - 1
-        : selectedIndex - 1
+  const previousImage = () => {
+    if (!selectedProject) return;
+
+    setSelectedImageIndex((current) =>
+      current === 0
+        ? selectedProject.images.length - 1
+        : current - 1
     );
   };
 
-  const nextItem = () => {
-    if (selectedIndex === null) return;
+  const nextImage = () => {
+    if (!selectedProject) return;
 
-    setSelectedIndex(
-      selectedIndex === filteredItems.length - 1
+    setSelectedImageIndex((current) =>
+      current === selectedProject.images.length - 1
         ? 0
-        : selectedIndex + 1
+        : current + 1
     );
   };
 
@@ -116,6 +159,7 @@ export const PortfolioPage: React.FC = () => {
           margin: '0 auto',
         }}
       >
+        {/* Header */}
         <div style={{ marginBottom: '40px' }}>
           <p
             style={{
@@ -201,11 +245,12 @@ export const PortfolioPage: React.FC = () => {
           {filteredItems.map((item, index) => (
             <article
               key={`${item.title}-${index}`}
-              onClick={() => setSelectedIndex(index)}
+              onClick={() => openProject(index)}
               style={{
                 cursor: 'pointer',
               }}
             >
+              {/* Cover Image */}
               <div
                 style={{
                   aspectRatio: '4 / 3',
@@ -215,7 +260,7 @@ export const PortfolioPage: React.FC = () => {
                 }}
               >
                 <img
-                  src={item.image}
+                  src={item.images[0]}
                   alt={item.title}
                   style={{
                     width: '100%',
@@ -252,13 +297,23 @@ export const PortfolioPage: React.FC = () => {
               >
                 {item.category} · {item.year}
               </p>
+
+              <p
+                style={{
+                  fontSize: '13px',
+                  color: '#999',
+                  marginTop: '5px',
+                }}
+              >
+                {item.images.length} images
+              </p>
             </article>
           ))}
         </div>
       </div>
 
       {/* Lightbox */}
-      {selectedItem && (
+      {selectedProject && (
         <div
           onClick={closeModal}
           style={{
@@ -272,6 +327,7 @@ export const PortfolioPage: React.FC = () => {
             padding: '30px',
           }}
         >
+          {/* Close */}
           <button
             onClick={closeModal}
             style={{
@@ -283,29 +339,37 @@ export const PortfolioPage: React.FC = () => {
               color: 'white',
               fontSize: '32px',
               cursor: 'pointer',
+              zIndex: 2,
             }}
           >
             ×
           </button>
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              previousItem();
-            }}
-            style={{
-              position: 'absolute',
-              left: '20px',
-              background: 'none',
-              border: 'none',
-              color: 'white',
-              fontSize: '40px',
-              cursor: 'pointer',
-            }}
-          >
-            ‹
-          </button>
+          {/* Previous Image */}
+          {selectedProject.images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                previousImage();
+              }}
+              style={{
+                position: 'absolute',
+                left: '20px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                color: 'white',
+                fontSize: '48px',
+                cursor: 'pointer',
+                zIndex: 2,
+              }}
+            >
+              ‹
+            </button>
+          )}
 
+          {/* Main Content */}
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
@@ -315,11 +379,11 @@ export const PortfolioPage: React.FC = () => {
             }}
           >
             <img
-              src={selectedItem.image}
-              alt={selectedItem.title}
+              src={selectedProject.images[selectedImageIndex]}
+              alt={selectedProject.title}
               style={{
                 maxWidth: '100%',
-                maxHeight: '75vh',
+                maxHeight: '72vh',
                 objectFit: 'contain',
               }}
             />
@@ -332,36 +396,54 @@ export const PortfolioPage: React.FC = () => {
                 marginTop: '20px',
               }}
             >
-              {selectedItem.title}
+              {selectedProject.title}
             </h2>
 
             <p
               style={{
                 color: '#bbb',
                 fontSize: '14px',
+                marginTop: '6px',
               }}
             >
-              {selectedItem.category} · {selectedItem.year}
+              {selectedProject.category} · {selectedProject.year}
+            </p>
+
+            <p
+              style={{
+                color: '#999',
+                fontSize: '13px',
+                marginTop: '8px',
+              }}
+            >
+              Image {selectedImageIndex + 1} of{' '}
+              {selectedProject.images.length}
             </p>
           </div>
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              nextItem();
-            }}
-            style={{
-              position: 'absolute',
-              right: '20px',
-              background: 'none',
-              border: 'none',
-              color: 'white',
-              fontSize: '40px',
-              cursor: 'pointer',
-            }}
-          >
-            ›
-          </button>
+          {/* Next Image */}
+          {selectedProject.images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                nextImage();
+              }}
+              style={{
+                position: 'absolute',
+                right: '20px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                color: 'white',
+                fontSize: '48px',
+                cursor: 'pointer',
+                zIndex: 2,
+              }}
+            >
+              ›
+            </button>
+          )}
         </div>
       )}
     </main>
