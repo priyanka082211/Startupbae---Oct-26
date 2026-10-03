@@ -1,4 +1,4 @@
-export type Page = 'home' | 'services' | 'work' | 'industries' | 'about' | 'insights' | 'contact';
+export type Page = 'home' | 'services' | 'work' | 'industries' | 'about' | 'insights' | 'contact' | 'portfolio';
 
 export type ServicePillar = 'build' | 'attract' | 'convert' | 'grow';
 
