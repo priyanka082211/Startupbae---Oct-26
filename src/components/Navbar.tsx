@@ -20,14 +20,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks: { label: string; page: Page }[] = [
-    { label: 'Home', page: 'home' },
-    { label: 'Services', page: 'services' },
-    { label: 'Work', page: 'work' },
-    { label: 'Industries', page: 'industries' },
-    { label: 'About', page: 'about' },
-    { label: 'Insights', page: 'insights' },
-  ];
+const navLinks: { label: string; page: Page }[] = [
+  { label: 'Home', page: 'home' },
+  { label: 'Services', page: 'services' },
+  { label: 'Work', page: 'work' },
+  { label: 'Portfolio', page: 'portfolio' },
+  { label: 'Industries', page: 'industries' },
+  { label: 'About', page: 'about' },
+  { label: 'Insights', page: 'insights' },
+];
 
   const handleLinkClick = (page: Page) => {
     onNavigate(page);
