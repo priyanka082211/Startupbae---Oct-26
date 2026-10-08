@@ -1,0 +1,6 @@
+{
+  "name": "StartupBae — AI Automation and Business Automation",
+  "description": "StartupBae builds AI and business automation systems that take repetitive manual work off your team's plate. Stop doing work your business can automate.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
