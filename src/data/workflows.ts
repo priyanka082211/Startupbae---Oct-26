@@ -1,0 +1,472 @@
+import { WorkflowExample } from '../types';
+
+export const HERO_WORKFLOW = [
+  { step: '01', title: 'New Lead', note: 'Form, message or ad submission', type: 'trigger' },
+  { step: '02', title: 'AI Qualification', note: 'Instant criteria & intent check', type: 'ai' },
+  { step: '03', title: 'CRM Update', note: 'Contact created & pipeline staged', type: 'system' },
+  { step: '04', title: 'WhatsApp Sent', note: 'Personalized interactive message', type: 'comm' },
+  { step: '05', title: 'Appointment', note: 'Calendar booked automatically', type: 'calendar' },
+  { step: '06', title: 'Follow-up', note: 'Reminder sequences triggered', type: 'action' },
+];
+
+export const BEFORE_AFTER_DATA = {
+  before: [
+    { title: 'Lead comes in', note: 'Arrives in inbox or form tool' },
+    { title: 'Employee checks email', note: 'Manual inbox monitoring throughout the day' },
+    { title: 'Copies details', note: 'Cut & paste names, phones and requirements' },
+    { title: 'Updates CRM', note: 'Manually creates contacts, tags and stages' },
+    { title: 'Sends message', note: 'Types manual WhatsApp or email response' },
+    { title: 'Remembers follow-up', note: 'Relies on memory, sticky notes or calendar' },
+  ],
+  after: [
+    { title: 'Lead comes in', note: 'Instant webhook trigger from any source' },
+    { title: 'AI qualifies', note: 'Evaluates intent, fit and captures missing info' },
+    { title: 'CRM updates', note: 'Contact synced, tagged, assigned, staged' },
+    { title: 'WhatsApp sent', note: 'Instant direct message sent in seconds' },
+    { title: 'Salesperson notified', note: 'Internal Slack/SMS alert with context summary' },
+    { title: 'Follow-up triggered', note: 'Scheduled timed touches if lead stays silent' },
+  ],
+};
+
+export const FULL_CUSTOMER_JOURNEY = [
+  { stage: '01', title: 'Lead', description: 'Inbound ad, web form, phone, or messaging channel' },
+  { stage: '02', title: 'Qualification', description: 'AI or rules-based criteria assessment' },
+  { stage: '03', title: 'Sales', description: 'Notification sent to sales rep with key notes' },
+  { stage: '04', title: 'Appointment', description: 'Calendar invite, timezone sync & prep message' },
+  { stage: '05', title: 'Payment', description: 'Stripe or payment gateway confirmation event' },
+  { stage: '06', title: 'Onboarding', description: 'Intake form, document upload & client portal access' },
+  { stage: '07', title: 'Delivery', description: 'Internal tasks generated in project management tool' },
+  { stage: '08', title: 'Follow-up', description: 'Status updates and proactive milestone checks' },
+  { stage: '09', title: 'Review', description: 'Automated feedback request after service completion' },
+  { stage: '10', title: 'Re-engagement', description: 'Scheduled check-in at 30, 60 or 90 days' },
+];
+
+export const COMPLEXITY_COMPARISON = [
+  {
+    level: 'Simple',
+    flow: ['Form', 'CRM', 'Email'],
+    description: 'Direct 3-step connector for capturing leads and sending immediate confirmations.',
+    tools: ['Google Forms', 'CRM', 'SendGrid / Gmail'],
+  },
+  {
+    level: 'Medium',
+    flow: ['Lead', 'AI Qualification', 'CRM', 'WhatsApp', 'Follow-up'],
+    description: 'Enriched workflow evaluating lead quality, messaging via chat, and running nurture loops.',
+    tools: ['Webhook', 'OpenAI', 'GoHighLevel', 'WhatsApp API'],
+  },
+  {
+    level: 'Complex',
+    flow: [
+      'Lead',
+      'AI Qualification',
+      'CRM',
+      'WhatsApp',
+      'Calendar',
+      'Salesperson',
+      'Follow-up',
+      'Reporting',
+    ],
+    description: 'End-to-end multi-platform integration across booking, internal routing, reminders and automated sync.',
+    tools: ['n8n / Make', 'OpenAI', 'Airtable', 'Google Workspace', 'Twilio', 'CRM'],
+  },
+];
+
+export const SALES_WORKFLOWS: WorkflowExample[] = [
+  {
+    id: 'new-lead-sales',
+    title: 'New Lead Workflow',
+    category: 'Sales',
+    description: 'Captures incoming leads, validates criteria with AI, logs details into CRM, alerts the sales team, and starts the initial follow-up.',
+    tools: ['Webhook', 'AI Qualification', 'CRM', 'Internal Alerts', 'Follow-up Engine'],
+    steps: [
+      { id: '1', label: 'New Lead', sublabel: 'Inbound submission', type: 'trigger' },
+      { id: '2', label: 'AI Qualification', sublabel: 'Evaluates budget & timeline', type: 'action' },
+      { id: '3', label: 'CRM Update', sublabel: 'Pipeline stage assigned', type: 'system' },
+      { id: '4', label: 'Sales Notification', sublabel: 'Alert sent to account rep', type: 'system' },
+      { id: '5', label: 'Follow-up', sublabel: 'Initial touchpoint sent', type: 'action' },
+    ],
+  },
+  {
+    id: 'proposal-followup',
+    title: 'Proposal Follow-up Workflow',
+    category: 'Sales',
+    description: 'Monitors sent proposals and handles timed follow-ups when a prospect has not replied within a designated window.',
+    tools: ['CRM', 'Conditional Timer', 'Email / WhatsApp', 'Task Automation'],
+    steps: [
+      { id: '1', label: 'Proposal Sent', sublabel: 'Document dispatched', type: 'trigger' },
+      { id: '2', label: 'No Response', sublabel: 'Wait 48–72 hours', type: 'condition' },
+      { id: '3', label: 'Follow-up Sent', sublabel: 'Gentle context reminder', type: 'action' },
+      { id: '4', label: 'Sales Task', sublabel: 'Rep notified to phone prospect', type: 'human' },
+    ],
+  },
+  {
+    id: 'lead-reply',
+    title: 'Lead Reply Workflow',
+    category: 'Sales',
+    description: 'Detects replies from prospects, interprets intent using language models, updates deal status, and notifies the responsible rep.',
+    tools: ['Inbound Email/SMS', 'AI Intent Classifier', 'CRM Pipeline', 'Sales Alert'],
+    steps: [
+      { id: '1', label: 'Lead Replies', sublabel: 'Customer answers email or text', type: 'trigger' },
+      { id: '2', label: 'AI Identifies Intent', sublabel: 'Questions vs booking vs objection', type: 'action' },
+      { id: '3', label: 'CRM Update', sublabel: 'Status changes to In Discussion', type: 'system' },
+      { id: '4', label: 'Salesperson Alert', sublabel: 'Notification with proposed reply', type: 'human' },
+    ],
+  },
+];
+
+export const LEAD_WORKFLOWS: WorkflowExample[] = [
+  {
+    id: 'fb-lead',
+    title: 'Facebook Lead Workflow',
+    category: 'Lead Management',
+    description: 'Connects Meta Lead Ads directly to your CRM, evaluates lead fit via AI, and opens an instant WhatsApp dialogue.',
+    tools: ['Meta Lead Ads', 'CRM', 'AI Qualification', 'WhatsApp API', 'Calendar'],
+    steps: [
+      { id: '1', label: 'Facebook Lead', sublabel: 'Lead ad submitted', type: 'trigger' },
+      { id: '2', label: 'CRM Sync', sublabel: 'Instant record creation', type: 'system' },
+      { id: '3', label: 'AI Qualification', sublabel: 'Filter spam & match criteria', type: 'action' },
+      { id: '4', label: 'WhatsApp Sent', sublabel: 'Interactive booking prompt', type: 'action' },
+      { id: '5', label: 'Appointment', sublabel: 'Direct slot confirmed', type: 'system' },
+    ],
+  },
+  {
+    id: 'website-lead',
+    title: 'Website Lead Workflow',
+    category: 'Lead Management',
+    description: 'Takes web form inputs, updates CRM properties, runs round-robin rep assignment, sends a tailored welcome email, and sets follow-ups.',
+    tools: ['Website Form', 'CRM', 'Routing Logic', 'Email', 'Follow-up Sequence'],
+    steps: [
+      { id: '1', label: 'Website Form', sublabel: 'Contact / inquiry submitted', type: 'trigger' },
+      { id: '2', label: 'CRM Record', sublabel: 'Fields mapped accurately', type: 'system' },
+      { id: '3', label: 'Lead Assignment', sublabel: 'Assigned by territory or rep', type: 'action' },
+      { id: '4', label: 'Tailored Email', sublabel: 'Instant confirmation with info', type: 'action' },
+      { id: '5', label: 'Follow-up Loop', sublabel: 'Nurture cadence activated', type: 'system' },
+    ],
+  },
+  {
+    id: 'missed-call',
+    title: 'Missed Call Workflow',
+    category: 'Lead Management',
+    description: 'Catches unanswered phone calls instantly and responds with a text message to keep the caller engaged before they seek a competitor.',
+    tools: ['Telephony / Twilio', 'SMS Engine', 'CRM Log', 'Follow-up Task'],
+    steps: [
+      { id: '1', label: 'Missed Call', sublabel: 'Unanswered inbound call', type: 'trigger' },
+      { id: '2', label: 'Instant Message', sublabel: 'SMS: Sorry we missed you!', type: 'action' },
+      { id: '3', label: 'CRM Log', sublabel: 'Activity recorded on contact', type: 'system' },
+      { id: '4', label: 'Follow-up Task', sublabel: 'Callback task queued for team', type: 'human' },
+    ],
+  },
+];
+
+export const CUSTOMER_WORKFLOWS: WorkflowExample[] = [
+  {
+    id: 'new-customer',
+    title: 'New Customer Workflow',
+    category: 'Customer',
+    description: 'Triggers immediately after payment confirmation to dispatch onboarding surveys, assign internal setup tasks, and welcome the client.',
+    tools: ['Stripe / Gateway', 'Onboarding Form', 'CRM', 'Project Board', 'Welcome Message'],
+    steps: [
+      { id: '1', label: 'New Customer', sublabel: 'Payment successful', type: 'trigger' },
+      { id: '2', label: 'Payment Logged', sublabel: 'Invoice reconciled', type: 'system' },
+      { id: '3', label: 'Onboarding Form', sublabel: 'Intake questions sent', type: 'action' },
+      { id: '4', label: 'CRM & Tasks', sublabel: 'Project cards created', type: 'system' },
+      { id: '5', label: 'Welcome Message', sublabel: 'Client portal credentials sent', type: 'action' },
+    ],
+  },
+  {
+    id: 'appointment-lifecycle',
+    title: 'Appointment Lifecycle Workflow',
+    category: 'Customer',
+    description: 'Handles the full appointment experience from initial confirmation, 24h & 1h reminder notifications, through to post-meeting follow-up.',
+    tools: ['Calendar', 'WhatsApp / SMS', 'CRM Stage', 'Follow-up Email'],
+    steps: [
+      { id: '1', label: 'Appointment Booked', sublabel: 'Date & time selected', type: 'trigger' },
+      { id: '2', label: 'Confirmation Sent', sublabel: 'Calendar invite + details', type: 'action' },
+      { id: '3', label: 'Reminder Sent', sublabel: 'Timed 24h & 1h SMS reminders', type: 'action' },
+      { id: '4', label: 'Appointment Held', sublabel: 'Session completed', type: 'human' },
+      { id: '5', label: 'Follow-up Sent', sublabel: 'Summary & next steps dispatched', type: 'action' },
+    ],
+  },
+  {
+    id: 'completed-service',
+    title: 'Completed Service Workflow',
+    category: 'Customer',
+    description: 'Activates when a job or service ticket is closed, sending a thank-you note and a direct feedback or review request.',
+    tools: ['CRM / Ticket Status', 'Delay Timer', 'Review Request Message'],
+    steps: [
+      { id: '1', label: 'Completed Service', sublabel: 'Ticket marked complete', type: 'trigger' },
+      { id: '2', label: 'Follow-up Check', sublabel: 'Delivery satisfaction verified', type: 'action' },
+      { id: '3', label: 'Review Request', sublabel: 'Direct review link provided', type: 'action' },
+    ],
+  },
+];
+
+export const MARKETING_SOCIAL_WORKFLOWS: WorkflowExample[] = [
+  {
+    id: 'social-content-flow',
+    title: 'Social Content Workflow',
+    category: 'Marketing & Social',
+    description: 'Takes rough ideas, drafts structured copy using AI, presents it to human team members for review, and queues it for scheduled posting.',
+    tools: ['Content Idea Sheet', 'AI Copy Engine', 'Team Approval Flow', 'Social Scheduler'],
+    steps: [
+      { id: '1', label: 'Content Idea', sublabel: 'Idea logged in spreadsheet/board', type: 'trigger' },
+      { id: '2', label: 'AI Content Creation', sublabel: 'Drafts headlines, body & hooks', type: 'action' },
+      { id: '3', label: 'Approval Step', sublabel: 'Human review & edit', type: 'human' },
+      { id: '4', label: 'Scheduling', sublabel: 'Added to publishing queue', type: 'system' },
+      { id: '5', label: 'Social Publishing', sublabel: 'Published to channels', type: 'action' },
+    ],
+  },
+  {
+    id: 'content-repurposing',
+    title: 'Content Repurposing Workflow',
+    category: 'Marketing & Social',
+    description: 'Ingests long-form articles or guides, extracts key takeaways with AI, formats them for professional networks, and queues distribution.',
+    tools: ['Blog RSS / CMS', 'AI Summarization', 'LinkedIn Queue', 'Multi-channel Distribution'],
+    steps: [
+      { id: '1', label: 'New Blog Post', sublabel: 'Published on website', type: 'trigger' },
+      { id: '2', label: 'AI Summary', sublabel: 'Distills core principles', type: 'action' },
+      { id: '3', label: 'LinkedIn Post', sublabel: 'Formatted thread/article', type: 'system' },
+      { id: '4', label: 'Social Content', sublabel: 'Multi-channel assets queued', type: 'action' },
+    ],
+  },
+  {
+    id: 'campaign-lead-nurture',
+    title: 'Campaign Lead Nurture Workflow',
+    category: 'Marketing & Social',
+    description: 'Catches campaign leads, syncs them to segmented CRM lists, executes automated education sequences, and hands warm leads to sales.',
+    tools: ['Ad Campaign', 'CRM Segment', 'Nurture Cadence', 'Sales Task Hand-off'],
+    steps: [
+      { id: '1', label: 'Campaign Lead', sublabel: 'Lead opt-in registered', type: 'trigger' },
+      { id: '2', label: 'CRM Segmentation', sublabel: 'Tagged with interest segment', type: 'system' },
+      { id: '3', label: 'Nurture Sequence', sublabel: 'Timed educational emails', type: 'action' },
+      { id: '4', label: 'Sales Follow-up', sublabel: 'Rep notified upon engagement', type: 'human' },
+    ],
+  },
+];
+
+export const OPERATIONS_WORKFLOWS: WorkflowExample[] = [
+  {
+    id: 'email-classification',
+    title: 'Incoming Email Workflow',
+    category: 'Operations',
+    description: 'Reads shared team inboxes, classifies messages by inquiry type using AI, assigns to the correct department, and prepares drafted responses.',
+    tools: ['Shared Inbox', 'AI Classifier', 'Routing Rules', 'Draft Response Generator'],
+    steps: [
+      { id: '1', label: 'Incoming Email', sublabel: 'Email hits support/info inbox', type: 'trigger' },
+      { id: '2', label: 'AI Classification', sublabel: 'Identifies billing, tech, or sales', type: 'action' },
+      { id: '3', label: 'Team Assignment', sublabel: 'Routed to correct specialist', type: 'system' },
+      { id: '4', label: 'Response Drafted', sublabel: 'Pre-filled response for approval', type: 'action' },
+    ],
+  },
+  {
+    id: 'data-sync-flow',
+    title: 'Spreadsheet & Data Sync Workflow',
+    category: 'Operations',
+    description: 'Watches operational spreadsheets, reformats and sanitizes inputs, synchronizes rows to the central CRM, and sends internal alerts.',
+    tools: ['Google Sheets / Excel', 'Transformation Logic', 'CRM API', 'Team Slack/Chat Alert'],
+    steps: [
+      { id: '1', label: 'Sheet Row Added', sublabel: 'New row updated or edited', type: 'trigger' },
+      { id: '2', label: 'Workflow Validation', sublabel: 'Checks duplicates & schemas', type: 'action' },
+      { id: '3', label: 'CRM Sync', sublabel: 'Database updated cleanly', type: 'system' },
+      { id: '4', label: 'Notification', sublabel: 'Confirmation alert sent', type: 'action' },
+    ],
+  },
+  {
+    id: 'meeting-summary-tasks',
+    title: 'Meeting Notes to Tasks Workflow',
+    category: 'Operations',
+    description: 'Captures meeting recordings or transcripts, extracts actionable to-dos with AI, and creates tasks in project management software.',
+    tools: ['Meeting Transcript', 'AI Action Extractor', 'Task Software', 'Follow-up Summary'],
+    steps: [
+      { id: '1', label: 'Meeting Held', sublabel: 'Call concludes & transcript ready', type: 'trigger' },
+      { id: '2', label: 'AI Summary', sublabel: 'Condenses discussion & decisions', type: 'action' },
+      { id: '3', label: 'Action Items', sublabel: 'Extracts responsible assignees', type: 'action' },
+      { id: '4', label: 'Tasks Created', sublabel: 'Logged in task management tool', type: 'system' },
+    ],
+  },
+  {
+    id: 'reporting-collection',
+    title: 'Automated Reporting Workflow',
+    category: 'Operations',
+    description: 'Gathers operational and sales data across multiple platforms on a set schedule, generates an executive summary, and emails stakeholders.',
+    tools: ['Cron Schedule', 'Multi-app Data Pull', 'AI Report Synthesis', 'Email Distribution'],
+    steps: [
+      { id: '1', label: 'Scheduled Trigger', sublabel: 'Weekly or monthly cadence', type: 'trigger' },
+      { id: '2', label: 'Data Collection', sublabel: 'Queries CRM, ads and sheets', type: 'system' },
+      { id: '3', label: 'AI Summary', sublabel: 'Summarizes key trends & deltas', type: 'action' },
+      { id: '4', label: 'Email Report', sublabel: 'Dispatched to management inbox', type: 'action' },
+    ],
+  },
+];
+
+export const AUTOMATION_LIBRARY_CATEGORIES = [
+  {
+    id: 'sales',
+    name: 'Sales',
+    description: 'Lead qualification, follow-ups, appointment booking, pipeline updates, notifications.',
+    items: [
+      { title: 'Lead qualification', detail: 'AI screening against company criteria and budget fit.' },
+      { title: 'Lead assignment', detail: 'Round-robin or rule-based routing to matching reps.' },
+      { title: 'Sales follow-up', detail: 'Structured reminders when leads stop responding.' },
+      { title: 'Proposal follow-up', detail: 'Tracking dispatched proposals with timed checks.' },
+      { title: 'Missed call follow-up', detail: 'Immediate SMS response to keep callers engaged.' },
+      { title: 'Appointment booking', detail: 'Self-serve booking directly synced to calendar.' },
+      { title: 'Reminders', detail: 'Multi-touch reminders across email and messaging.' },
+      { title: 'Notifications', detail: 'Real-time sales alerts via chat or mobile.' },
+      { title: 'Lead scoring', detail: 'Dynamic scores assigned based on activity.' },
+      { title: 'Pipeline updates', detail: 'Automatic stage transitions based on events.' },
+    ],
+  },
+  {
+    id: 'crm',
+    name: 'CRM',
+    description: 'Contact creation, pipeline movement, task creation, lead assignment, CRM synchronization.',
+    items: [
+      { title: 'Contact creation', detail: 'Zero manual data entry from forms or chats.' },
+      { title: 'Contact updates', detail: 'Keep phone numbers, addresses, and tags clean.' },
+      { title: 'Pipeline movement', detail: 'Deals advance automatically when milestones are met.' },
+      { title: 'Task creation', detail: 'Auto-generate follow-up tasks for reps.' },
+      { title: 'Lead assignment', detail: 'Assign new leads based on territory, rep load, or product.' },
+      { title: 'CRM sync', detail: 'Bi-directional sync between CRM and operational tools.' },
+      { title: 'Duplicate handling', detail: 'Detect and merge matching email/phone entries.' },
+      { title: 'Database updates', detail: 'Sync records to internal databases and warehouses.' },
+    ],
+  },
+  {
+    id: 'email',
+    name: 'Email',
+    description: 'Automated email flows from immediate lead receipts to internal notification alerts.',
+    items: [
+      { title: 'New lead emails', detail: 'Immediate, personalized initial responses.' },
+      { title: 'Follow-up sequences', detail: 'Multi-step nurture flows tailored by interest.' },
+      { title: 'Onboarding sequences', detail: 'Step-by-step guidance for newly closed clients.' },
+      { title: 'Notifications', detail: 'Internal team notifications on key milestones.' },
+      { title: 'Email classification', detail: 'AI sorting of incoming messages to team tags.' },
+      { title: 'AI drafting', detail: 'Generating ready-to-review draft replies.' },
+      { title: 'Internal alerts', detail: 'Priority alerts when high-value contacts write in.' },
+    ],
+  },
+  {
+    id: 'whatsapp-sms',
+    name: 'WhatsApp / SMS',
+    description: 'Direct conversational messaging integrated into your CRM and booking systems.',
+    items: [
+      { title: 'New lead messages', detail: 'Instant WhatsApp message sent seconds after form fill.' },
+      { title: 'Appointment confirmations', detail: 'Immediate date and calendar link via text.' },
+      { title: 'Appointment reminders', detail: '24h and 1h reminders to reduce no-show rates.' },
+      { title: 'Missed call follow-up', detail: 'Automated text reply when calls go unanswered.' },
+      { title: 'Customer updates', detail: 'Status updates during service or order processing.' },
+      { title: 'Review requests', detail: 'Direct review link delivered after completion.' },
+    ],
+  },
+  {
+    id: 'social-media',
+    name: 'Social Media',
+    description: 'Content generation, approval, scheduling, publishing and reporting workflows.',
+    items: [
+      { title: 'Content generation', detail: 'AI-assisted drafting from source briefs.' },
+      { title: 'Repurposing', detail: 'Transform long-form articles into social posts.' },
+      { title: 'Approval flows', detail: 'Internal review before content is scheduled.' },
+      { title: 'Scheduling', detail: 'Direct queue management across profiles.' },
+      { title: 'Publishing', detail: 'Automated posting through platform webhooks.' },
+      { title: 'Content calendars', detail: 'Syncing upcoming posts with team spreadsheets.' },
+      { title: 'Reporting', detail: 'Periodic compilation of engagement statistics.' },
+    ],
+  },
+  {
+    id: 'content',
+    name: 'Content',
+    description: 'Transforming, repurposing, and organizing content across company channels.',
+    items: [
+      { title: 'Blog → LinkedIn', detail: 'Extract takeaways and format for professional feed.' },
+      { title: 'Video transcript → social posts', detail: 'Extract key insights from video audio.' },
+      { title: 'Podcast → content', detail: 'Transcribe recordings and build quote cards.' },
+      { title: 'AI captions', detail: 'Draft contextual captions tailored to media.' },
+      { title: 'Content ideas', detail: 'Generate topical angles based on customer inquiries.' },
+      { title: 'Newsletter', detail: 'Compile weekly company updates into newsletter drafts.' },
+      { title: 'Content approval', detail: 'Slack/Email approval triggers before distribution.' },
+    ],
+  },
+  {
+    id: 'customer',
+    name: 'Customer',
+    description: 'Onboarding, reminders, forms, notifications, reviews and re-engagement.',
+    items: [
+      { title: 'Onboarding', detail: 'Trigger welcome packets and portal access upon sign-up.' },
+      { title: 'Welcome messages', detail: 'Multi-channel welcome touchpoints.' },
+      { title: 'Forms', detail: 'Automated survey and intake form delivery.' },
+      { title: 'Document collection', detail: 'Request and file required client files.' },
+      { title: 'Appointment reminders', detail: 'Pre-meeting preparation instructions.' },
+      { title: 'Review requests', detail: 'Post-service review collection workflows.' },
+      { title: 'Re-engagement', detail: 'Automated check-ins for dormant accounts.' },
+    ],
+  },
+  {
+    id: 'operations',
+    name: 'Operations',
+    description: 'Internal notifications, approvals, task creation, meeting summaries, reporting.',
+    items: [
+      { title: 'Internal notifications', detail: 'Route critical business events to Slack/Teams.' },
+      { title: 'Approvals', detail: 'Multi-step sign-off workflows for invoices or discounts.' },
+      { title: 'Task creation', detail: 'Auto-create tasks in Asana, ClickUp, or Trello.' },
+      { title: 'Meeting summaries', detail: 'AI summaries and action items extracted from calls.' },
+      { title: 'Reports', detail: 'Automated weekly management rollups.' },
+      { title: 'Data entry', detail: 'Eliminate manual copy-pasting between systems.' },
+      { title: 'Document generation', detail: 'Auto-generate contracts and PDF invoices.' },
+      { title: 'Employee onboarding', detail: 'Provision accounts and checklist items for new hires.' },
+    ],
+  },
+  {
+    id: 'data',
+    name: 'Data',
+    description: 'Moving and transforming information between spreadsheets, CRMs, and databases.',
+    items: [
+      { title: 'Google Sheets → CRM', detail: 'Transform row data into updated CRM records.' },
+      { title: 'CRM → Airtable', detail: 'Back up and organize custom records into Airtable.' },
+      { title: 'Airtable → CRM', detail: 'Trigger CRM actions when Airtable records change.' },
+      { title: 'Form → CRM', detail: 'Cleanse and normalize form submissions into CRM.' },
+      { title: 'API sync', detail: 'Connect custom REST APIs with standard SaaS tools.' },
+      { title: 'Data transformation', detail: 'Format phone numbers, names, and JSON structures.' },
+      { title: 'Database updates', detail: 'Update SQL/Postgres databases on webhook triggers.' },
+    ],
+  },
+  {
+    id: 'ai-agents',
+    name: 'AI Agents',
+    description: 'AI chat, AI voice, receptionists, qualification, customer support, and assisted workflows.',
+    items: [
+      { title: 'AI chat', detail: 'Embed smart conversational agents on websites and portals.' },
+      { title: 'AI voice agent', detail: 'Inbound and outbound voice workflows with CRM logging.' },
+      { title: 'AI receptionist', detail: 'After-hours call answering and detail capture.' },
+      { title: 'Lead qualification', detail: 'Multi-question conversational screening.' },
+      { title: 'Customer support', detail: 'Answers standard knowledge base questions with handoff.' },
+      { title: 'Email classification', detail: 'Understands intent and suggests accurate replies.' },
+      { title: 'Content creation', detail: 'Assists staff with initial drafts and outlines.' },
+      { title: 'Document processing', detail: 'Extracts data from invoices, receipts, and PDFs.' },
+    ],
+  },
+  {
+    id: 'ecommerce',
+    name: 'E-commerce Possibilities',
+    description: 'Order routing, abandoned cart follow-ups, delivery alerts, and segmentation.',
+    items: [
+      { title: 'Order notifications', detail: 'Multi-channel order confirmation and status updates.' },
+      { title: 'Customer follow-up', detail: 'Post-delivery product usage tips and support.' },
+      { title: 'Abandoned cart', detail: 'Gentle recovery messages via email or SMS.' },
+      { title: 'Reviews', detail: 'Timed review requests following delivery confirmation.' },
+      { title: 'Segmentation', detail: 'Group customers by purchase history and frequency.' },
+    ],
+  },
+  {
+    id: 'recruitment',
+    name: 'Recruitment Possibilities',
+    description: 'Applicant ingestion, CV parsing, candidate classification, and interview scheduling.',
+    items: [
+      { title: 'Applications', detail: 'Centralize applications from job boards into one system.' },
+      { title: 'CV extraction', detail: 'Extract candidate contact info and skill keywords.' },
+      { title: 'Candidate classification', detail: 'Score applications against role prerequisites.' },
+      { title: 'Interview scheduling', detail: 'Self-serve calendar selection for screened candidates.' },
+      { title: 'Candidate notifications', detail: 'Consistent status updates at every hiring stage.' },
+    ],
+  },
+];
