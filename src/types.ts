@@ -1,4 +1,4 @@
-export type PageId = 'home' | 'automation' | 'case-studies' | 'how-it-works' | 'contact';
+export type PageId = 'home' | 'automation' | 'case-studies' | 'how-it-works' | 'contact' | 'privacy-policy';
 
 export interface WorkflowStep {
   id: string;
