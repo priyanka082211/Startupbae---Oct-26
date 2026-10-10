@@ -65,10 +65,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         Contact
       </button>
     </li>
-    <li>
-                <a href="/privacy-policy" className="hover:text-white transition-colors">
-                  Privacy Policy
-                </a>
+    <li><button
+  onClick={() => onNavigate('privacy-policy')}
+  className="hover:text-white transition-colors"
+>
+  Privacy Policy
+</button>
               </li>
   </ul>
 </div>
