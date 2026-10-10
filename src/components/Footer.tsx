@@ -33,8 +33,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          
-         ```tsx
 {/* Column 2: Navigation */}
 <div className="md:col-span-3 space-y-3">
   <h4 className="text-xs font-semibold uppercase tracking-wider text-[#F7B7A3]">
@@ -74,7 +72,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
   </ul>
 </div>
-```
 
 
           {/* Column 3: Contact Details (Strictly Documented) */}
