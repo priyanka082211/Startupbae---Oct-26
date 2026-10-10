@@ -76,6 +76,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('contact')}
                   className="hover:text-white transition-colors"
                 >
+                  
+<a
+  href="/privacy-policy"
+  className="text-sm text-gray-600 hover:text-[#C83B7A] transition-colors"
+>
+  Privacy Policy
+</a>
                   Contact
                 </button>
               </li>
