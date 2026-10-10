@@ -34,62 +34,48 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
 
           
-          {/* Column 2: Navigation */}
-          <div className="md:col-span-3 space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-[#F7B7A3]">
-              Navigation
-            </h4>
-            <ul className="space-y-2.5 text-sm text-[#FFF8F0]/80">
-              <li>
-                <button
-                  onClick={() => onNavigate('home')}
-                  className="hover:text-white transition-colors"
-                >
-                  Home
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('automation')}
-                  className="hover:text-white transition-colors"
-                >
-                  Automation Library
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('case-studies')}
-                  className="hover:text-white transition-colors"
-                >
-                  Case Studies
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('how-it-works')}
-                  className="hover:text-white transition-colors"
-                >
-                  How It Works
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('contact')}
-                  className="hover:text-white transition-colors"
-                >
-                  Contact
-                </button>
-              </li>
-              <li>
-                <a
-                  href="/privacy-policy"
-                  className="hover:text-white transition-colors"
-                >
-                  Privacy Policy
-                </a>
-              </li>
-            </ul>
-          </div>
+         ```tsx
+{/* Column 2: Navigation */}
+<div className="md:col-span-3 space-y-3">
+  <h4 className="text-xs font-semibold uppercase tracking-wider text-[#F7B7A3]">
+    Navigation
+  </h4>
+
+  <ul className="space-y-2.5 text-sm text-[#FFF8F0]/80">
+    <li>
+      <button onClick={() => onNavigate('home')} className="hover:text-white transition-colors">
+        Home
+      </button>
+    </li>
+    <li>
+      <button onClick={() => onNavigate('automation')} className="hover:text-white transition-colors">
+        Automation Library
+      </button>
+    </li>
+    <li>
+      <button onClick={() => onNavigate('case-studies')} className="hover:text-white transition-colors">
+        Case Studies
+      </button>
+    </li>
+    <li>
+      <button onClick={() => onNavigate('how-it-works')} className="hover:text-white transition-colors">
+        How It Works
+      </button>
+    </li>
+    <li>
+      <button onClick={() => onNavigate('contact')} className="hover:text-white transition-colors">
+        Contact
+      </button>
+    </li>
+    <li>
+      <a href="/privacy-policy" className="hover:text-white transition-colors">
+        Privacy Policy
+      </a>
+    </li>
+  </ul>
+</div>
+```
+
 
           {/* Column 3: Contact Details (Strictly Documented) */}
           <div className="md:col-span-4 space-y-4">
