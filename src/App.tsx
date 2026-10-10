@@ -12,6 +12,7 @@ import { AutomationPage } from './pages/AutomationPage';
 import { CaseStudiesPage } from './pages/CaseStudiesPage';
 import { HowItWorksPage } from './pages/HowItWorksPage';
 import { ContactPage } from './pages/ContactPage';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
@@ -25,7 +26,8 @@ export default function App() {
         hash === 'automation' ||
         hash === 'case-studies' ||
         hash === 'how-it-works' ||
-        hash === 'contact'
+        hash === 'contact' ||
+        hash === 'privacy-policy'
       ) {
         setCurrentPage(hash as PageId);
       } else if (!hash) {
@@ -56,6 +58,7 @@ export default function App() {
         {currentPage === 'case-studies' && <CaseStudiesPage onNavigate={navigateTo} />}
         {currentPage === 'how-it-works' && <HowItWorksPage onNavigate={navigateTo} />}
         {currentPage === 'contact' && <ContactPage />}
+        {currentPage === 'privacy-policy' && <PrivacyPolicy />}
       </main>
 
       {/* Footer */}
