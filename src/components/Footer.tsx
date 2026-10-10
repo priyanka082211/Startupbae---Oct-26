@@ -33,7 +33,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Column 2: Navigation (Exact 5 Pages) */}
+          
+          {/* Column 2: Navigation */}
           <div className="md:col-span-3 space-y-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-[#F7B7A3]">
               Navigation
@@ -76,12 +77,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('contact')}
                   className="hover:text-white transition-colors"
                 >
-                  
-              <li>
-                <button
-                  onClick={() => onNavigate('contact')}
-                  className="hover:text-white transition-colors"
-                >
                   Contact
                 </button>
               </li>
@@ -92,6 +87,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 >
                   Privacy Policy
                 </a>
+              </li>
             </ul>
           </div>
 
